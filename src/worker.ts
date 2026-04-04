@@ -91,7 +91,9 @@ function landingPage(): string {
 footer{text-align:center;padding:2rem;color:#475569;font-size:.8rem}
 </style></head><body>
 <div class="hero"><div>
-<h1>cocapn.com</h1>
+
+      <img src="https://cocapn-logos.casey-digennaro.workers.dev/img/cocapn-logo-v1.png" alt="Cocapn" style="width:64px;height:auto;margin-bottom:.5rem;border-radius:8px;display:block;margin-left:auto;margin-right:auto">
+      <h1>cocapn.com</h1>
 <div class="sub">The Catalog</div>
 <p class="quote">"Guns. Lots of guns."</p>
 <p>Browse equipment for your vessel. STT, TTS, vision, memory, planning — each one a repo, sized exactly right, running on exactly the right compute. Pick the right tool for the job. Or browse loadouts assembled by agents who've been there.</p>
