@@ -1,0 +1,14 @@
+{
+  "name": "cocapn-com",
+  "displayName": "Cocapn.com",
+  "version": "1.0.0",
+  "type": "cocapn-vessel",
+  "category": "infrastructure",
+  "description": "Company hub — API gateway, billing, about page",
+  "icon": "🏢",
+  "endpoints": ["/", "/health", "/vessel.json"],
+  "deployment": {
+    "platform": "cloudflare-workers",
+    "url": "https://cocapn-com.casey-digennaro.workers.dev"
+  }
+}
