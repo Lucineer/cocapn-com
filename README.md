@@ -1,71 +1,58 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Lucineer/capitaine/master/docs/capitaine-logo.jpg" alt="Capitaine" width="120">
-</p>
+# cocapn-com
 
-<h1 align="center">cocapn-com</h1>
+A production-ready company hub for billing, API gateway, and dashboard functions. It's built as a standard Fleet Vessel, designed to integrate cleanly with existing Cocapn Fleets where your agents already run.
 
-<p align="center">Fleet catalog and marketplace. Discover vessels and equipment.</p>
-
-<p align="center">
-  <a href="https://github.com/Lucineer/cocapn-com/issues">Issues</a> ·
-  <a href="#the-fleet">The Fleet</a>
-</p>
+You can own, modify, and deploy your own instance without vendor lock-in.
 
 ---
 
-**Fleet service** · Powered by [Capitaine](https://github.com/Lucineer/capitaine) · [Cocapn](https://github.com/Lucineer/cocapn)
+### Live Instance
+A deployed version is available at: https://cocapn-com.casey-digennaro.workers.dev
 
-A cocapn fleet service running on Cloudflare Workers.
+---
+
+## Why it exists
+Internal tooling often forces a specific stack and includes unneeded complexity. This hub was built to run our own fleet. It's shared as a working, modular codebase you can adapt, not as a service you must subscribe to.
+
+## How it works
+- Runs on Cloudflare Workers. No servers to manage and zero runtime npm dependencies. It deploys in seconds.
+- Fork-first development. There is no single official version. You maintain your fork and control all changes.
+- Fleet-native. It communicates using the fleet protocol, discovers other vessels automatically, and integrates with your agents.
+- Readable code. The logic is in plain JavaScript and is structured to be audited or modified directly.
 
 ## Quick Start
+1.  Fork and clone this repository.
+2.  Run `npx wrangler deploy` to deploy it.
+3.  Modify the source in `src/` to fit your needs.
 
-```bash
-gh repo fork Lucineer/cocapn-com --clone
-cd cocapn-com
-npx wrangler login
-npx wrangler deploy
-```
+## Architecture
+This is a Cocapn Vessel: a modular, self-contained service that participates in the Fleet. All logic executes at the edge and can be extended or replaced.
 
-## The Fleet
+## Features
+All components are optional and can be swapped out:
+*   **API Gateway**: Centralized routing, configurable rate limits, and audit logging for fleet services.
+*   **Billing Module**: Tracks usage, manages subscription state, and handles invoice webhooks. Works with your own payment provider.
+*   **Admin Dashboard**: A low-JS interface for user management, service health, and cost reporting.
+*   **Fleet Integration**: Automatically registers with and appears in fleet discovery via `vessel.json`.
+*   **Your Data, Your Account**: Binds to your Cloudflare KV namespace. Data never leaves your infrastructure.
+*   **Agent Access (A2A)**: Every dashboard function has a corresponding API endpoint for automation.
 
+## One Limitation
+Being built for Cloudflare Workers, it inherits the platform's constraints, such as CPU time limits per request. It's designed for edge-native workflows and integrations, not long-running server processes.
 
-<details>
-<summary><strong>⚓ The Fleet</strong></summary>
+## Setup for Persistence
+To store data like user records and billing state, bind a Cloudflare KV namespace. Add your namespace ID for `CATALOG_KV` in `wrangler.toml`. This is the only required configuration.
 
-**Flagship vessels**
-
-- [cocapn.ai](https://github.com/Lucineer/capitaine)
-- [personallog.ai](https://github.com/Lucineer/personallog-ai)
-- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
-- [studylog.ai](https://github.com/Lucineer/studylog-ai)
-- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
-- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
-- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
-- [reallog.ai](https://github.com/Lucineer/reallog-ai)
-- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
-
-**Fleet services**
-
-- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-- [Git Agent (full)](https://github.com/Lucineer/git-agent)
-- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
-- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
-- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
-- [Dream Engine](https://github.com/Lucineer/dream-engine)
-- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
-
-**For power users**
-
-- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
-- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
-- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
-
-[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
-[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-
-</details>
-
+## Contributing
+Development is fork-first. To propose a change, fork the repository, make your modifications, and open a pull request. Contributions that maintain zero dependencies and modularity are welcome.
 
 ## License
+MIT License.
 
-MIT · Superinstance & Lucineer (DiGennaro et al.)
+**Attribution:** Superinstance & Lucineer (DiGennaro et al.).
+
+---
+
+<div align="center">
+  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> • <a href="https://cocapn.ai">Cocapn</a>
+</div>
